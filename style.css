@@ -1,0 +1,234 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #ffe6f0;
+  color: #4a2c2a;
+  overflow-x: hidden;
+  position: relative;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  color: #d63384;
+}
+
+.hero {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Floating Vines Background */
+.floating-vines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.vine {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('./vine1.png');
+  background-position: center top;
+  opacity: 0.2;
+  animation: floatVine 60s linear infinite;
+}
+
+@keyframes floatVine {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+/* Envelope Styles */
+.envelope-wrapper {
+  position: relative;
+  width: 500px;
+  height: 350px;
+  cursor: pointer;
+  background: var(--bg-envelope-color);
+  box-shadow: 0 0 40px var(--shadow-color);
+  z-index: 1;
+  margin-top: 100px; /* Added space above envelope */
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 200px solid var(--envelope-tab);
+  border-right: 250px solid transparent;
+  border-left: 250px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  border-top: 200px solid transparent;
+  border-right: 250px solid var(--envelope-cover);
+  border-bottom: 180px solid var(--envelope-cover);
+  border-left: 250px solid var(--envelope-cover);
+}
+
+.letter {
+  position: absolute;
+  left: 0;
+  bottom: -50px; /* Adjusted to be more visible */
+  width: 100%;
+  height: 90%;
+  background: var(--primary);
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px var(--shadow-color);
+  padding: 20px 25px;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.letter.hidden {
+  display: none;
+}
+
+.letter.show {
+  display: block;
+  bottom: 150px; /* Positioned higher to be more visible */
+  transform: translateY(-100px); /* Lifted higher */
+  transition-delay: 1s;
+}
+
+.text {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--txt-color);
+  text-align: center;
+  font-size: 18px; /* Increased font size */
+  line-height: 1.6;
+}
+
+.text strong {
+  font-size: 22px; /* Larger heading */
+  display: block;
+  margin-bottom: 10px;
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px; /* Slightly larger heart */
+  height: 25px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  cursor: pointer;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -12.5px;
+}
+
+.heart:after {
+  right: 12.5px;
+}
+
+.flap > .envelope::before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.flap > .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+/* Photos Section */
+.photos-section {
+  padding: 2rem;
+  text-align: center;
+  background: #fff0f5;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.photo-card {
+  background: white;
+  border: 4px solid #ffb6c1;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.photo-card:hover {
+  transform: scale(1.05);
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+  border: 2px dashed #ffc0cb;
+  border-radius: 8px;
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #8b008b;
+}
+
+/* Color Variables */
+:root {
+  --primary: #fff;
+  --bg-color: #ffe6f0;
+  --bg-envelope-color: #f5edd1;
+  --envelope-tab: #ecdeb8;
+  --envelope-cover: #e6cfa7;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --txt-color: #444;
+  --heart-color: rgb(252, 8, 231);
+}
